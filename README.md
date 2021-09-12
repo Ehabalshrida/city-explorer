@@ -1,3 +1,13 @@
+# Name of feature: Asynchronous code, and APIs
+
+# Start time:  2:00 pm
+
+# Finish time: 12:00 am
+
+# Actual time needed to complete: 10 hours
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
