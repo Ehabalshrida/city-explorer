@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
  import { Table ,Image} from 'react-bootstrap';  
  class Location extends Component {
-
+//
     render() {
         return (
             <>
