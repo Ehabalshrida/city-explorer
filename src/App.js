@@ -12,7 +12,7 @@ export class App extends Component {
       city_name:"",
       lat:"",
       lon:"",
-
+      imgsrc:"",
       showData:false
     }
   }
@@ -35,8 +35,8 @@ export class App extends Component {
         city_name:responseData.display_name,
         lon:responseData.lon,
         lat:responseData.lat,
-
-        showData:true
+        imgsrc:`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${responseData.lat},${responseData.lon}&zoom=1-18`,
+        showData:true,
 
       })
       
@@ -54,7 +54,7 @@ export class App extends Component {
           <Location city_name={this.state.city_name}
                     lat={this.state.lat}
                     lon={this.state.lon}
-                    imgsrc={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.lat.toString()},${this.state.lon.toString()}&format=json`}/>
+                    imgsrc={this.state.imgsrc}/>
         }
         
       </div>
