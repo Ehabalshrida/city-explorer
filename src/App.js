@@ -13,6 +13,7 @@ export class App extends Component {
       lat:"",
       lon:"",
       imgsrc:"",
+
       showData:false
     }
   }
@@ -23,6 +24,7 @@ export class App extends Component {
     })
   }
   handleSubmit=(e)=>{
+    //console.log(`${process.env.REACT_APP_LOCATIONIQ_API_KEY}`);
     e.preventDefault();
     let config={
       method:"GET",
@@ -34,7 +36,7 @@ export class App extends Component {
         city_name:responseData.display_name,
         lon:responseData.lon,
         lat:responseData.lat,
-        imgsrc:`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${responseData.lat},${responseData.lon}&zoom=1-18`,
+        imgsrc:`https:maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${responseData.lat},${responseData.lon}&zoom=1-18`,
         showData:true,
 
       })
