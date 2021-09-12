@@ -23,7 +23,6 @@ export class App extends Component {
     })
   }
   handleSubmit=(e)=>{
-    //console.log(`${process.env.REACT_APP_LOCATIONIQ_API_KEY}`);
     e.preventDefault();
     let config={
       method:"GET",
