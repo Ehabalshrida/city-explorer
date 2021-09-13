@@ -12,7 +12,7 @@ export class App extends Component {
       city_name:"",
       lat:"",
       lon:"",
-      imgsrc:"",
+     // imgsrc:"",
 
       showData:false
     }
