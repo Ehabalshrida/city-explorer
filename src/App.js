@@ -12,9 +12,8 @@ export class App extends Component {
       city_name:"",
       lat:"",
       lon:"",
-     // imgsrc:"",
-
-      showData:false
+     imgsrc:"",
+    showData:false
     }
   }
   handleLocation=(e)=>{
