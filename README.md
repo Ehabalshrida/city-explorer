@@ -1,4 +1,4 @@
-# Name of feature: Asynchronous code, and APIs
+# Name of feature: Custom Servers with Node and Express
 
 # Start time:  2:00 pm
 
