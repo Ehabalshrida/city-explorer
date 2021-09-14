@@ -3,7 +3,9 @@ import Location from './component/Location';
 import Forms from './component/Forms';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Weather from './component/Weather';
+import { Alert } from 'react-bootstrap';
+//
 
 export class App extends Component {
   constructor(props){
@@ -13,7 +15,9 @@ export class App extends Component {
       lat:"",
       lon:"",
      imgsrc:"",
-    showData:false
+    showData:false,
+    weatherData:"",
+    error:"",
     }
   }
   handleLocation=(e)=>{
@@ -40,7 +44,20 @@ export class App extends Component {
 
       })
       
-    })
+    }).then(() => {
+      axios.get(`http://${process.env.REACT_APP_BACKEND_URL}?lon=${this.state.lon}&lat=${this.state.lat}`)
+        .then(res => {
+          console.log(res.data);
+          this.setState({
+            weatherData: res.data,
+          })
+        });
+    }).catch((e)=>{
+      console.log(e.response);
+      this.setState({
+        error:e.response.data.error,
+
+    });});
     
     
 
@@ -56,6 +73,18 @@ export class App extends Component {
                     lon={this.state.lon}
                     imgsrc={this.state.imgsrc}/>
         }
+        
+        {
+
+this.state.error&&<Alert >
+    This is a {this.state.error} alert—check it out!
+  </Alert>
+        }
+        {this.state.weatherData.map( item=> {
+           return  <Weather  
+                       date={item.date}
+                       description={item.description}/>})}
+
         
       </div>
     )
