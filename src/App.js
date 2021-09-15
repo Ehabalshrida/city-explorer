@@ -16,7 +16,7 @@ export class App extends Component {
       lon:"",
      imgsrc:"",
     showData:false,
-    weatherData:"",
+    weatherData:[],
     error:"",
     }
   }
