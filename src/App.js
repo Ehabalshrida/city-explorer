@@ -5,9 +5,8 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Weather from './component/Weather';
 import { Alert } from 'react-bootstrap';
+import Movie from './component/Movie';
 import { Row } from 'react-bootstrap';
-//
-
 export class App extends Component {
   constructor(props){
     super(props);
@@ -17,14 +16,19 @@ export class App extends Component {
       lon:"",
      imgsrc:"",
     showData:false,
-    weatherData:[],
+    weatherData:"",
     error:"",
+    movieResult:[],
+    city:"",
+    showmovie: false,
+    showweather:false,
     }
   }
   handleLocation=(e)=>{
     let city_name=e.target.value;
     this.setState({
       city_name:city_name,
+      city:city_name,
     })
   }
   handleSubmit=(e)=>{
@@ -45,13 +49,23 @@ export class App extends Component {
 
       })
       
-    }) 
-    .then(() => {
-      axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/weather1?lon=${this.state.lon}&lat=${this.state.lat}`)
+    }).then(() => {
+      axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/weather2?lon=${this.state.lon}&lat=${this.state.lat}`)
         .then(res => {
           console.log(res.data);
           this.setState({
             weatherData: res.data,
+            showweather: true,
+          })
+        });
+    }).then(() => {
+      axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/movie?query=${this.state.city}`)
+        .then(res => {
+          console.log(res.data);
+          this.setState({
+            movieResult: res.data,
+            showmovie:true,
+
           })
         });
     }).catch((e)=>{
@@ -59,9 +73,8 @@ export class App extends Component {
       this.setState({
         error:e.response.data.error,
 
-
     });});
-  
+    
     
 
   }
@@ -77,21 +90,35 @@ export class App extends Component {
                     imgsrc={this.state.imgsrc}/>
         }
         
-       {
+        {
 
 this.state.error&&<Alert >
     This is a {this.state.error} alert—check it out!
   </Alert>
-  } 
-  <br/><br/>
-  <Row>
-        {this.state.weatherData.map( item=> {
+        }
+        <Row>
+        {this.state.showweather&&this.state.weatherData.map( item=> {
            return  <Weather  
                        date={item.date}
-        description={item.description}/>})}
+                       description={item.description}/>})}
+                       </Row>
+{this.state.showmovie&&
+  this.state.movieResult.map(item=>{
+    return <Movie title={item.title}
+              overview={item.overview} 
+              avgVotes={item.avgVotes}
+              totalVotes={item.totalVotes}
+              popularity={item.popularity}
+              releaseDate={item.releaseDate}/>
 
- </Row>
 
+
+
+
+  })
+  
+}
+        
       </div>
     )
   }
