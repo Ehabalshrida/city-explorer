@@ -1,4 +1,4 @@
-# Name of feature: Custom Servers with Node and Express
+# Name of feature: APIs
 
 # Start time:  2:00 pm
 
@@ -6,4 +6,3 @@
 
 # Actual time needed to complete: 10 hours
 
-![request-response cycle ](./component/request-response-cycle/WRRC.PNG)
